@@ -37,14 +37,14 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
 
                 {/* Logo */}
-                <Link to="/">
+                <Link to="/home">
                     <img src="/images/logo.png" className="h-10" />
                 </Link>
 
                 {/* Desktop */}
                 <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
 
-                    <Link to="/">Home</Link>
+                    <Link to="/home">Home</Link>
                     <Link to="/about">About</Link>
 
                     {/* Services */}

@@ -8,7 +8,7 @@ import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs';
 import StatsSection from '../../components/StatsSection/StatsSection';
 import CaseStudy from '../../components/CaseStudy/CaseStudy';
 import TestimonialsSection from '../../components/TestimonialsSection/TestimonialsSection';
-import StartSection from '../../components/StartSection/BlogSection';
+import StartSection from '../../components/StartSection/StartSection';
 
 const Homepage = () => {
     return (
