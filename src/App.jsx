@@ -4,6 +4,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Homepage from "./pages/Homepage/Homepage";
 import Aboutpage from './pages/Aboutpage/Aboutpage';
+import PerformanceMarketing from "./pages/services/PerformanceMarketing";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Homepage />} />  
         <Route path="/about" element={<Aboutpage />} /> 
+        <Route path="/services/performance-marketing" element={<PerformanceMarketing />} />
       </Routes>
 
       <Footer />
