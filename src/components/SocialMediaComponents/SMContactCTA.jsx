@@ -1,50 +1,139 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { MessageSquare, ArrowRight } from 'lucide-react';
 
 const SMContactCTA = () => {
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: '-100px' });
+
     return (
-        <section className="py-20 px-6">
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="max-w-6xl mx-auto rounded-[3rem] bg-gradient-to-br from-[#0072BC] to-[#29ABE2] p-12 lg:p-20 text-center relative overflow-hidden shadow-2xl shadow-blue-200"
-            >
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+        <section style={{ padding: '80px 24px 60px', background: '#fff' }} ref={ref}>
+            <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                        borderRadius: 48,
+                        background: 'linear-gradient(135deg, #0072BC 0%, #29ABE2 100%)',
+                        padding: '80px 60px',
+                        textAlign: 'center',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        boxShadow: '0 40px 80px -20px rgba(0,114,188,0.35)',
+                    }}
+                >
+                    {/* Orbs */}
+                    <div style={{
+                        position: 'absolute', top: '-20%', right: '-10%',
+                        width: '40%', height: '80%',
+                        background: 'rgba(255,255,255,0.08)',
+                        borderRadius: '50%', filter: 'blur(40px)',
+                        pointerEvents: 'none',
+                    }} />
+                    <div style={{
+                        position: 'absolute', bottom: '-20%', left: '-10%',
+                        width: '40%', height: '80%',
+                        background: 'rgba(0,0,0,0.08)',
+                        borderRadius: '50%', filter: 'blur(40px)',
+                        pointerEvents: 'none',
+                    }} />
 
-                <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-white font-bold text-xs uppercase tracking-[0.2em] mb-8">
-                        <MessageSquare size={16} /> Get in touch
+                    <div style={{ position: 'relative', zIndex: 2 }}>
+                        {/* Pill */}
+                        <div style={{
+                            display: 'inline-flex', alignItems: 'center', gap: 6,
+                            background: 'rgba(255,255,255,0.2)',
+                            padding: '6px 16px', borderRadius: 100,
+                            fontSize: 10, fontWeight: 700, letterSpacing: '0.15em',
+                            textTransform: 'uppercase', color: 'rgba(255,255,255,0.9)',
+                            marginBottom: 24,
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        }}>
+                            <MessageSquare size={12} />
+                            Get in touch
+                        </div>
+
+                        {/* Heading */}
+                        <h2 style={{
+                            fontFamily: "'Lora', serif",
+                            fontSize: 'clamp(32px, 4vw, 58px)',
+                            color: '#fff', lineHeight: 1.1, marginBottom: 20,
+                        }}>
+                            Ready to dominate the<br />
+                            <span style={{ fontStyle: 'italic' }}>social landscape?</span>
+                        </h2>
+
+                        {/* Desc */}
+                        <p style={{
+                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            fontSize: 17, color: 'rgba(255,255,255,0.8)',
+                            maxWidth: 560, margin: '0 auto 40px', lineHeight: 1.7,
+                        }}>
+                            Partner with Mumbai's leading digital agency to transform your social presence into a high-performance sales engine.
+                        </p>
+
+                        {/* Buttons */}
+                        <div style={{
+                            display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap',
+                        }}>
+                            <motion.button
+                                whileHover={{
+                                    background: '#fff',
+                                    color: '#0072BC',
+                                    y: -2,
+                                    boxShadow: '0 16px 32px rgba(0,0,0,0.15)',
+                                }}
+                                whileTap={{ scale: 0.97 }}
+                                style={{
+                                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                                    padding: '16px 32px', borderRadius: 16,
+                                    background: '#F58220', color: '#fff',
+                                    fontWeight: 700, fontSize: 15, border: 'none', cursor: 'pointer',
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                    transition: 'background 0.2s, color 0.2s',
+                                }}
+                            >
+                                Start Your Growth Story
+                                <motion.span
+                                    whileHover={{ x: 4 }}
+                                    style={{ display: 'inline-flex' }}
+                                >
+                                    <ArrowRight size={18} />
+                                </motion.span>
+                            </motion.button>
+
+                            <motion.button
+                                whileHover={{ background: 'rgba(255,255,255,0.15)' }}
+                                whileTap={{ scale: 0.97 }}
+                                style={{
+                                    display: 'inline-flex', alignItems: 'center', gap: 8,
+                                    padding: '16px 32px', borderRadius: 16,
+                                    background: 'transparent', color: '#fff',
+                                    fontWeight: 700, fontSize: 15,
+                                    border: '1.5px solid rgba(255,255,255,0.35)',
+                                    cursor: 'pointer',
+                                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                }}
+                            >
+                                View Our Services
+                            </motion.button>
+                        </div>
                     </div>
+                </motion.div>
 
-                    <h2 className="font-lora text-4xl lg:text-6xl text-white font-medium mb-8 leading-tight">
-                        Ready to dominate the <br className="hidden md:block" />
-                        <span className="italic">social landscape?</span>
-                    </h2>
-
-                    <p className="font-jakarta text-blue-50 text-lg md:text-xl max-w-2xl mx-auto mb-12 opacity-90">
-                        Partner with Mumbai's leading digital agency to transform your social presence into a high-performance sales engine.
+                {/* Footer note */}
+                <div style={{
+                    textAlign: 'center', marginTop: 56,
+                    paddingTop: 40, borderTop: '0.5px solid #f1f5f9',
+                }}>
+                    <p style={{
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        fontSize: 12, color: '#94a3b8',
+                    }}>
+                        © 2024 iBraine Digital Marketing. All rights reserved.
                     </p>
-
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                        <button className="w-full sm:w-auto bg-[#F58220] hover:bg-white hover:text-[#0072BC] text-white px-10 py-5 rounded-2xl font-bold transition-all flex items-center justify-center gap-3 group shadow-xl">
-                            Start Your Growth Story <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button className="w-full sm:w-auto border border-white/30 hover:bg-white/10 text-white px-10 py-5 rounded-2xl font-bold transition-all">
-                            View Our Services
-                        </button>
-                    </div>
                 </div>
-            </motion.div>
-
-            {/* Final Subtle Footer Link */}
-            <div className="mt-20 text-center border-t border-slate-100 pt-10">
-                <p className="font-jakarta text-slate-400 text-sm">
-                    © 2024 iBraine Digital Marketing. All rights reserved.
-                </p>
             </div>
         </section>
     );

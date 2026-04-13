@@ -1,112 +1,207 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { CheckCircle2, Sparkles } from 'lucide-react';
 
+const features = [
+    { title: 'Dedicated Resource', desc: 'Experienced managers focused entirely on your brand', color: '#0072BC' },
+    { title: 'Customized Design', desc: 'Unique visual storytelling tailored to your identity', color: '#F58220' },
+    { title: 'Data-Driven Strategy', desc: 'ROI-focused campaigns backed by real analytics', color: '#0072BC' },
+    { title: 'Platform Expertise', desc: 'Meta, LinkedIn, Instagram & X — mastered comprehensively', color: '#F58220' },
+];
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+};
+
 const SMImportance = () => {
-    const features = [
-        { title: "Dedicated Resource", desc: "Experienced managers for your brand" },
-        { title: "Customized Design", desc: "Unique visual storytelling" },
-        { title: "Data-Driven Strategy", desc: "ROI focused growth" },
-        { title: "Platform Expertise", desc: "Meta, LinkedIn, Instagram & X" }
-    ];
-
-    // Animation Variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, x: -20 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-    };
+    const ref = useRef(null);
+    const inView = useInView(ref, { once: true, margin: '-100px' });
 
     return (
-        <section className="py-24 px-6 bg-white relative overflow-hidden">
+        <section style={{
+            padding: '100px 24px',
+            background: '#ffffff',
+            position: 'relative',
+            overflow: 'hidden',
+        }}>
+            {/* Decorative blob */}
+            <div style={{
+                position: 'absolute', top: 0, right: 0,
+                width: 400, height: 400,
+                background: 'rgba(245,130,32,0.05)',
+                borderRadius: '50%', filter: 'blur(100px)',
+                pointerEvents: 'none',
+            }} />
 
-            {/* Decorative Background Element */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#F58220]/5 rounded-full blur-[100px] -z-10" />
+            <div style={{ maxWidth: 1200, margin: '0 auto' }} ref={ref}>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: '1fr 1fr',
+                    gap: 80,
+                    alignItems: 'center',
+                }}>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-                {/* Image Side with Animation */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="relative"
-                >
-                    {/* Decorative Shape behind image */}
-                    <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#0072BC]/10 rounded-full blur-2xl animate-pulse" />
-
-                    <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white">
-                        <img
-                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
-                            alt="Why it's important"
-                            className="w-full h-full object-cover transition-transform duration-[2s] hover:scale-105"
-                        />
-                    </div>
-
-                    {/* Floating Accent */}
+                    {/* IMAGE SIDE */}
                     <motion.div
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                        className="absolute -bottom-8 -right-8 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-3 border border-slate-50"
+                        initial={{ opacity: 0, scale: 0.93 }}
+                        animate={inView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.8 }}
+                        style={{ position: 'relative' }}
                     >
-                        <div className="bg-[#F58220] p-2 rounded-lg text-white">
-                            <Sparkles size={20} />
+                        {/* Decorative pulse circle */}
+                        <div style={{
+                            position: 'absolute', top: -24, left: -24,
+                            width: 128, height: 128,
+                            background: 'rgba(0,114,188,0.1)',
+                            borderRadius: '50%', filter: 'blur(24px)',
+                            animation: 'blobPulse 3s ease-in-out infinite',
+                        }} />
+
+                        <div style={{
+                            borderRadius: 40, overflow: 'hidden',
+                            border: '6px solid #fff',
+                            boxShadow: '0 40px 80px -20px rgba(0,0,0,0.12)',
+                        }}>
+                            <img
+                                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+                                alt="Team collaboration"
+                                style={{
+                                    width: '100%', height: '100%', objectFit: 'cover',
+                                    display: 'block',
+                                    transition: 'transform 2s ease',
+                                }}
+                                onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
+                                onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                            />
                         </div>
-                        <div className="text-sm font-bold text-slate-800">Visual Excellence</div>
+
+                        {/* Floating accent */}
+                        <motion.div
+                            animate={{ y: [0, -10, 0] }}
+                            transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+                            style={{
+                                position: 'absolute', bottom: -24, right: -16,
+                                background: '#fff', borderRadius: 20,
+                                padding: '14px 18px',
+                                boxShadow: '0 16px 40px -8px rgba(0,0,0,0.1)',
+                                display: 'flex', alignItems: 'center', gap: 10,
+                            }}
+                        >
+                            <div style={{
+                                width: 32, height: 32, borderRadius: 10,
+                                background: '#F58220',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                flexShrink: 0,
+                            }}>
+                                <Sparkles size={16} color="#fff" />
+                            </div>
+                            <div style={{
+                                fontSize: 13, fontWeight: 700, color: '#1e293b',
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            }}>
+                                Visual Excellence
+                            </div>
+                        </motion.div>
                     </motion.div>
-                </motion.div>
 
-                {/* Content Side */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={containerVariants}
-                >
-                    <motion.h2
-                        variants={itemVariants}
-                        className="font-lora text-4xl lg:text-5xl leading-tight text-slate-900 mb-8"
+                    {/* CONTENT SIDE */}
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={inView ? 'visible' : 'hidden'}
                     >
-                        Why social media marketing is <span className="text-[#0072BC] italic">important</span> for your business?
-                    </motion.h2>
+                        <motion.div variants={itemVariants} style={{
+                            display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20,
+                        }}>
+                            <div style={{ width: 32, height: 1.5, background: '#F58220' }} />
+                            <span style={{
+                                fontSize: 11, fontWeight: 700, letterSpacing: '0.2em',
+                                textTransform: 'uppercase', color: '#F58220',
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                            }}>
+                                Why It Matters
+                            </span>
+                        </motion.div>
 
-                    <motion.p
-                        variants={itemVariants}
-                        className="font-jakarta text-slate-500 text-lg leading-relaxed mb-10"
-                    >
-                        Social media marketing presents a great opportunity for businesses to create brand awareness. It plays a crucial role when customers make decisions.
-                    </motion.p>
+                        <motion.h2
+                            variants={itemVariants}
+                            style={{
+                                fontFamily: "'Lora', serif",
+                                fontSize: 'clamp(32px, 4vw, 52px)',
+                                lineHeight: 1.1, color: '#0f172a', marginBottom: 20,
+                            }}
+                        >
+                            Why social media is{' '}
+                            <span style={{ color: '#0072BC', fontStyle: 'italic' }}>important</span>{' '}
+                            for your business?
+                        </motion.h2>
 
-                    <div className="space-y-6">
-                        {features.map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                variants={itemVariants}
-                                whileHover={{ x: 10 }}
-                                className="flex items-start gap-5 group cursor-default p-4 rounded-2xl hover:bg-[#0072BC]/5 transition-colors"
-                            >
-                                <div className="text-[#0072BC] flex-shrink-0 mt-1">
-                                    <CheckCircle2 size={28} fill="#0072BC" className="text-white group-hover:scale-110 transition-transform" />
-                                </div>
-                                <div>
-                                    <h4 className="font-jakarta font-bold text-slate-900 text-xl mb-1">{item.title}</h4>
-                                    <p className="font-jakarta text-slate-500 text-base">{item.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                        <motion.p
+                            variants={itemVariants}
+                            style={{
+                                fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                fontSize: 16, color: '#64748b', lineHeight: 1.7, marginBottom: 32,
+                            }}
+                        >
+                            Social media presents a great opportunity for businesses to create brand awareness and plays a crucial role when customers make purchase decisions.
+                        </motion.p>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                            {features.map((item, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    variants={itemVariants}
+                                    whileHover={{ x: 10, backgroundColor: 'rgba(0,114,188,0.04)' }}
+                                    style={{
+                                        display: 'flex', alignItems: 'flex-start', gap: 14,
+                                        padding: 16, borderRadius: 16, cursor: 'default',
+                                        transition: 'background 0.2s',
+                                    }}
+                                >
+                                    <div style={{
+                                        width: 28, height: 28, borderRadius: '50%',
+                                        background: item.color,
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        flexShrink: 0, marginTop: 2,
+                                    }}>
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                            <path d="M3 7l3 3 5-5" stroke="white" strokeWidth="1.8"
+                                                strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 style={{
+                                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                            fontWeight: 700, color: '#0f172a', fontSize: 16, marginBottom: 2,
+                                        }}>
+                                            {item.title}
+                                        </h4>
+                                        <p style={{
+                                            fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                            color: '#64748b', fontSize: 13,
+                                        }}>
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                </div>
             </div>
+
+            <style>{`
+        @keyframes blobPulse {
+          0%, 100% { opacity: 0.4; transform: scale(1); }
+          50% { opacity: 0.8; transform: scale(1.1); }
+        }
+      `}</style>
         </section>
     );
 };

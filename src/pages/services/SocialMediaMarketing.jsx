@@ -1,56 +1,94 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import SMHero from '../../components/SocialMediaComponents/SMHero';
+import SMTicker from '../../components/SocialMediaComponents/SMTicker';
 import SMBenefits from '../../components/SocialMediaComponents/SMBenefits';
 import SMImportance from '../../components/SocialMediaComponents/SMImportance';
 import SMSuccessStories from '../../components/SocialMediaComponents/SMSuccessStories';
-import SMContactCTA from '../../components/SocialMediaComponents/SMContactCTA';
+// import SMContactCTA from '../../components/SocialMediaComponents/SMContactCTA';
+import QuoteForm from '../../components/Common component/QuoteForm';
 
+/* ─── Sticky Nav ──────────────────────────────────────────── */
+
+
+/* ─── Page ────────────────────────────────────────────────── */
 const SocialMediaMarketing = () => {
     return (
-        <main className="w-full bg-white overflow-hidden relative">
+        <main style={{ width: '100%', background: '#fff', overflowX: 'hidden', position: 'relative' }}>
 
-            {/* ════ LIVELY BACKGROUND LAYERS ════ */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                {/* 1. Moving Mesh Gradients */}
+            {/* ── Ambient background layers (fixed, behind everything) ── */}
+            <div style={{
+                position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
+            }}>
+                {/* Drifting mesh orb 1 */}
                 <motion.div
                     animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-[#0072BC]/10 rounded-full blur-[120px]"
+                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                    style={{
+                        position: 'absolute', top: '-10%', left: '-10%',
+                        width: '60%', height: '60%',
+                        background: 'rgba(0,114,188,0.06)',
+                        borderRadius: '50%', filter: 'blur(120px)',
+                    }}
                 />
+                {/* Drifting mesh orb 2 */}
                 <motion.div
-                    animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
-                    transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#F58220]/10 rounded-full blur-[120px]"
+                    animate={{ x: [0, -80, 0], y: [0, -40, 0] }}
+                    transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+                    style={{
+                        position: 'absolute', bottom: '-10%', right: '-10%',
+                        width: '50%', height: '50%',
+                        background: 'rgba(245,130,32,0.06)',
+                        borderRadius: '50%', filter: 'blur(120px)',
+                    }}
                 />
-
-                {/* 2. Professional Grain Texture */}
-                <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-
-                {/* 3. The Reference Grid Lines */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px)] bg-[size:10%_100%]" />
+                {/* Subtle grid lines */}
+                <div style={{
+                    position: 'absolute', inset: 0,
+                    backgroundImage: 'linear-gradient(to right, rgba(0,0,0,0.025) 1px, transparent 1px)',
+                    backgroundSize: '10% 100%',
+                }} />
             </div>
 
-            {/* ════ CONTENT ════ */}
-            <div className="relative z-10">
+            {/* ── Content ─────────────────────────────────────────────── */}
+            <div style={{ position: 'relative', zIndex: 1 }}>
                 <SMHero />
+                <SMTicker />
                 <SMBenefits />
-                <div className="h-24" /> {/* Spacer for air */}
+                <div style={{ height: 24 }} />
                 <SMImportance />
                 <SMSuccessStories />
-                <SMContactCTA />
+                {/* <SMContactCTA /> */}
+                <QuoteForm />
             </div>
 
+            {/* ── Global font + utility styles ────────────────────────── */}
             <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-                .font-lora { font-family: 'Lora', serif; }
-                .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
-                .text-gradient-blue { background: linear-gradient(to right, #0072BC, #29ABE2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-                .bg-ibraine-orange { background-color: #F58220; }
-                
-                /* Custom Selection color for iBraine */
-                ::selection { background: #F58220; color: white; }
-            `}</style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        * { box-sizing: border-box; }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Text selection branding */
+        ::selection { background: #F58220; color: #fff; }
+
+        /* Scroll-reveal utility — attach .sm-reveal to any element */
+        .sm-reveal {
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .sm-reveal.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Story card hover cursor */
+        .story-card-hover { cursor: pointer; }
+        .story-card-hover:hover h3 { color: #0072BC; }
+      `}</style>
         </main>
     );
 };
