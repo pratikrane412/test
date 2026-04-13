@@ -126,7 +126,7 @@ const Navbar = () => {
                         <div className="flex-1 overflow-y-auto pt-28 px-8 pb-10">
                             <div className="flex flex-col space-y-6">
 
-                                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl font-lora font-bold text-slate-900 border-b border-slate-50 pb-2">Home</Link>
+                                <Link to="/home" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl font-lora font-bold text-slate-900 border-b border-slate-50 pb-2">Home</Link>
                                 <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-4xl font-lora font-bold text-slate-900 border-b border-slate-50 pb-2">About</Link>
 
                                 {/* Services Accordion */}
