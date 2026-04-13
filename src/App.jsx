@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import Aboutpage from './pages/Aboutpage/Aboutpage';
 import PerformanceMarketing from "./pages/services/PerformanceMarketing";
 import SocialMediaMarketing from "./pages/services/SocialMediaMarketing";
+import Contactpage from './pages/ContactUs/ContactUs';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Homepage />} />  
         <Route path="/about" element={<Aboutpage />} /> 
+        <Route path="/contact" element={<Contactpage />} />
         <Route path="/services/performance-marketing" element={<PerformanceMarketing />} />
         <Route path="/services/social-media-marketing" element={<SocialMediaMarketing />} />
 
