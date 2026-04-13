@@ -1,1 +1,110 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap");
+
+/* Tailwind */
 @import "tailwindcss";
+
+/* Base Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lora", serif;
+  font-weight: 400;
+}
+
+/* Typography */
+h1 {
+  font-size: 72px;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 48px;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Navbar Link */
+.nav-link {
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #ffed4e;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffed4e;
+  transition: 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Button */
+.quote-btn {
+  background: #ffed4e;
+  color: black;
+  padding: 10px 24px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+/* Simple Animation */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.6s ease;
+}
+
+.reveal-active .reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Highlight Text */
+.text-marker {
+  position: relative;
+}
+
+.text-marker::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  height: 10px;
+  width: 100%;
+  background: #ffed4e;
+  z-index: -1;
+}
+
+/* Background Grid */
+.bg-grid-lines {
+  background-size: 80px 100%;
+  background-image: linear-gradient(to right, #f0f0f0 1px, transparent 1px);
+}
